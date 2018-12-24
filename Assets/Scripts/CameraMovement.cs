@@ -54,7 +54,7 @@ public class CameraMovement : MonoBehaviour {
         movement.Set(trueX, 0f, trueZ);
         movement = movement.normalized * camSpeed * Time.deltaTime;
         cameraBody.MovePosition(transform.position + movement);
-        Debug.Log(forward + " | " + trueX + " | " + trueZ);
+        //Debug.Log(forward + " | " + trueX + " | " + trueZ);
     }
 
     void Zoom(float y)
