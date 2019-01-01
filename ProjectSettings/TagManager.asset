@@ -7,6 +7,7 @@ TagManager:
   - Health
   - Stamina
   - Energy
+  - Character
   layers:
   - Default
   - TransparentFX

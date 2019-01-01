@@ -8,14 +8,13 @@ public class CharacterPanelControl : MonoBehaviour {
 
     public GameObject character;
 
-    GameObject characterPanel;
+    GameObject statusPanel;
     Text health, stamina, energy;
     Slider healthSlider, stamSlider, energySlider;
-    bool active;
 
     void Awake()
     {
-        characterPanel = GameObject.Find("CharacterPanel");
+        statusPanel = GameObject.Find("StatusPanel");
         health = GameObject.FindGameObjectWithTag("Health").GetComponent<Text>();
         stamina = GameObject.FindGameObjectWithTag("Stamina").GetComponent<Text>();
         energy = GameObject.FindGameObjectWithTag("Energy").GetComponent<Text>();
@@ -26,24 +25,47 @@ public class CharacterPanelControl : MonoBehaviour {
         energySlider = GameObject.FindObjectsOfType<Slider>()[0];
 
         HidePanel();
-        ShowPanel();
+
     }
 
     public void ShowPanel()
     {
-        characterPanel.SetActive(true);
-        active = true;
+        statusPanel.SetActive(true);
     }
 
     public void HidePanel()
     {
-        characterPanel.SetActive(false);
-        active = false;
+        statusPanel.SetActive(false);
     }
 
     public void Update()
     {
-        if (!character || !active) { return; }
+        Ray ray;
+        ray = Camera.main.ScreenPointToRay(Input.mousePosition);
+        RaycastHit hit;
+        if (Input.GetMouseButtonUp(0))
+        {
+            if (Physics.Raycast(ray, out hit))
+            {
+                if (hit.transform.tag == "Character")
+                {
+                    character = GameObject.Find(hit.transform.name);
+                    Debug.Log("We hit " + hit.transform.name);
+                }
+                else
+                {
+                    character = null;
+                    Debug.Log("We hit nothing.");
+                }
+            }
+        }
+
+        if (!character)
+        {
+            HidePanel();
+            return;
+        }
+        ShowPanel();
         CharacterDetails detail = character.GetComponent<CharacterDetails>();
         health.text = detail.Health() + "/" + detail.maxHealth;
         stamina.text = detail.Stam() + "/" + detail.maxStam;
