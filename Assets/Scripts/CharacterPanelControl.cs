@@ -89,12 +89,12 @@ public class CharacterPanelControl : MonoBehaviour {
             if (hit.transform.tag == "Character")
             {
                 character = GameObject.Find(hit.transform.name);
-                Debug.Log("We hit " + hit.transform.name);
+                //Debug.Log("We hit " + hit.transform.name);
             }
             else
             {
                 character = null;
-                Debug.Log("We hit nothing.");
+                //Debug.Log("We hit nothing.");
             }
          }
     }
@@ -103,21 +103,46 @@ public class CharacterPanelControl : MonoBehaviour {
     {
         if (!character)
         {
-            Debug.Log("No character selected.");
+            //Debug.Log("No character selected.");
             return;
         }
 
         Ray ray;
         ray = Camera.main.ScreenPointToRay(Input.mousePosition);
         RaycastHit hit;
+        CharacterDetails controller = character.GetComponent<CharacterDetails>();
+        if (Physics.Raycast(ray, out hit))
+        {
+            //Attacking
+            if (hit.transform.tag == "Character")
+            {
+                Debug.Log(character.name + " is attacking " + hit.transform.name);
+                controller.Attack(hit);
+            }
+            //Moving
+            else if (Physics.Raycast(ray, out hit, 100f, terrainMask))
+            {
+                Debug.Log("Move to " + hit.point.x + "," + hit.point.y + "," + hit.point.z);
+                controller.Move(hit);
+            }
+        }
+        /*
+
         if (Physics.Raycast(ray, out hit, 100f , terrainMask))
         {
             CharacterDetails controller = character.GetComponent<CharacterDetails>();
-
-            Debug.Log("Move to " + hit.point.x + "," +
-            hit.point.y + "," +
-            hit.point.z);
-            controller.Move(hit); 
-        }
+            if (hit.transform.tag == "Character")
+            {
+                //Attacking
+                Debug.Log(character.name + " is attacking " + hit.transform.name);
+                controller.Attack(hit);
+            }
+            else
+            {
+                //Movement 
+                Debug.Log("Move to " + hit.point.x + "," + hit.point.y + "," + hit.point.z);
+                controller.Move(hit);
+            }
+        }*/
     }
 }

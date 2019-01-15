@@ -56,6 +56,22 @@ public class CharacterDetails : MonoBehaviour {
         characterBody.MovePosition(transform.position + movement);*/
     }
 
+    public void Attack(RaycastHit newTarget)
+    {
+        GameObject attTarget = GameObject.Find(newTarget.transform.name);
+        CharacterDetails targetController = attTarget.GetComponent<CharacterDetails>();
+        Rigidbody targetBody = attTarget.GetComponent<Rigidbody>();
+        float distance = Vector3.Distance(characterBody.position, targetBody.position);
+
+        if(distance > 2)
+        {
+            Debug.Log("Target is out of attack range");
+            return;
+        }
+
+        targetController.TakeDamage(2);
+    }
+
     public int Health()
     {
         return health;
