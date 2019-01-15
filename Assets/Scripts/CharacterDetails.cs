@@ -33,15 +33,27 @@ public class CharacterDetails : MonoBehaviour {
         if(hasTarget && health > 0)
         {
             nav.SetDestination(target.point);
+            if(Vector3.Distance(characterBody.position, target.point) < 1f)
+            {
+                anim.SetBool("IsWalking", false);
+            }
         }
     }
 
     public void TakeDamage(int damage)
     {
+        if(health <= 0)
+        {
+            return;
+        }
         health -= damage;
-        if(health < 0)
+        if(health <= 0)
         {
             anim.SetTrigger("IsDead");
+        }
+        else
+        {
+            anim.SetTrigger("IsHit");
         }
     }
 
@@ -49,6 +61,7 @@ public class CharacterDetails : MonoBehaviour {
     {
         target.point = newTarget.point;
         hasTarget = true;
+        anim.SetBool("IsWalking", true);
         /*
         Debug.Log("Move to " + target.point.x + "," + target.point.y + "," + target.point.z);
         movement.Set(target.point.x, target.point.y, target.point.z);
@@ -58,6 +71,11 @@ public class CharacterDetails : MonoBehaviour {
 
     public void Attack(RaycastHit newTarget)
     {
+        if(health <= 0)
+        {
+            Debug.Log("Dead Characters can't attack");
+            return;
+        }
         GameObject attTarget = GameObject.Find(newTarget.transform.name);
         CharacterDetails targetController = attTarget.GetComponent<CharacterDetails>();
         Rigidbody targetBody = attTarget.GetComponent<Rigidbody>();
@@ -69,6 +87,7 @@ public class CharacterDetails : MonoBehaviour {
             return;
         }
 
+        anim.SetTrigger("IsAttacking");
         targetController.TakeDamage(2);
     }
 
