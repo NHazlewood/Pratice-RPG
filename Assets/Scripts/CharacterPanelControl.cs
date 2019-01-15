@@ -126,23 +126,5 @@ public class CharacterPanelControl : MonoBehaviour {
                 controller.Move(hit);
             }
         }
-        /*
-
-        if (Physics.Raycast(ray, out hit, 100f , terrainMask))
-        {
-            CharacterDetails controller = character.GetComponent<CharacterDetails>();
-            if (hit.transform.tag == "Character")
-            {
-                //Attacking
-                Debug.Log(character.name + " is attacking " + hit.transform.name);
-                controller.Attack(hit);
-            }
-            else
-            {
-                //Movement 
-                Debug.Log("Move to " + hit.point.x + "," + hit.point.y + "," + hit.point.z);
-                controller.Move(hit);
-            }
-        }*/
     }
 }

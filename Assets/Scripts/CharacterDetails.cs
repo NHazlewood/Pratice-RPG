@@ -22,7 +22,6 @@ public class CharacterDetails : MonoBehaviour {
         health = maxHealth;
         stam = maxStam;
         energy = maxEnergy;
-        //Debug.Log("Energy = " + energy + ", MaxEnergy =" + maxEnergy);
         anim = GetComponent<Animator>();
         characterBody = GetComponent<Rigidbody>();
         nav = GetComponent<UnityEngine.AI.NavMeshAgent>();
@@ -62,11 +61,6 @@ public class CharacterDetails : MonoBehaviour {
         target.point = newTarget.point;
         hasTarget = true;
         anim.SetBool("IsWalking", true);
-        /*
-        Debug.Log("Move to " + target.point.x + "," + target.point.y + "," + target.point.z);
-        movement.Set(target.point.x, target.point.y, target.point.z);
-        movement = movement.normalized * speed * Time.deltaTime;
-        characterBody.MovePosition(transform.position + movement);*/
     }
 
     public void Attack(RaycastHit newTarget)
