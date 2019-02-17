@@ -8,6 +8,9 @@ TagManager:
   - Stamina
   - Energy
   - Character
+  - EnergySlider
+  - HealthSlider
+  - StaminaSlider
   layers:
   - Default
   - TransparentFX

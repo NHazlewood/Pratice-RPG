@@ -21,10 +21,9 @@ public class CharacterPanelControl : MonoBehaviour {
         stamina = GameObject.FindGameObjectWithTag("Stamina").GetComponent<Text>();
         energy = GameObject.FindGameObjectWithTag("Energy").GetComponent<Text>();
 
-        //might want to just add Tags for them as well
-        healthSlider = GameObject.FindObjectsOfType<Slider>()[2];
-        stamSlider = GameObject.FindObjectsOfType<Slider>()[1];
-        energySlider = GameObject.FindObjectsOfType<Slider>()[0];
+        healthSlider = GameObject.FindGameObjectWithTag("HealthSlider").GetComponent<Slider>();
+        stamSlider = GameObject.FindGameObjectWithTag("StaminaSlider").GetComponent<Slider>();
+        energySlider = GameObject.FindGameObjectWithTag("EnergySlider").GetComponent<Slider>();
 
         HidePanel();
 

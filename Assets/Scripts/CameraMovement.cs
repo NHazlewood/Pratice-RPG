@@ -45,16 +45,13 @@ public class CameraMovement : MonoBehaviour {
         {
             trueZ = Mathf.Sin(forwardRadian) * x * -1 + Mathf.Cos(forwardRadian) * z;
         }
-        else //(forward > 180f && forward < 360f)
+        else
         {
             trueZ = Mathf.Abs(Mathf.Sin(forwardRadian)) * x + Mathf.Cos(forwardRadian) * z;
         }
-        /* without the if and else the x portion of trueZ has the wrong sign, might be due to
-            a difference of conversion ie 90 being clock or counterclockwise to 0*/
         movement.Set(trueX, 0f, trueZ);
         movement = movement.normalized * camSpeed * Time.deltaTime;
         cameraBody.MovePosition(transform.position + movement);
-        //Debug.Log(forward + " | " + trueX + " | " + trueZ);
     }
 
     void Zoom(float y)
