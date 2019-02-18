@@ -1040,6 +1040,7 @@ GameObject:
   m_Component:
   - component: {fileID: 671178589}
   - component: {fileID: 671178588}
+  - component: {fileID: 671178590}
   m_Layer: 0
   m_Name: GameController
   m_TagString: Untagged
@@ -1071,6 +1072,18 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 7
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &671178590
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 671178587}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 574fa32114ab7234a8fa04577ce453d1, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  team: 1
 --- !u!1001 &681054349
 Prefab:
   m_ObjectHideFlags: 0
@@ -1660,6 +1673,7 @@ MonoBehaviour:
   attackCost: 10
   stamRegen: 30
   healthRegen: 0
+  team: 1
 --- !u!136 &1326868397
 CapsuleCollider:
   m_ObjectHideFlags: 0
@@ -1688,6 +1702,18 @@ Rigidbody:
   m_Interpolate: 0
   m_Constraints: 80
   m_CollisionDetection: 0
+--- !u!114 &1326868399
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1326868394}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 05673bcf0833e8649946418e635c2347, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  mode: Zombie
 --- !u!1 &1326925848
 GameObject:
   m_ObjectHideFlags: 0
@@ -2070,6 +2096,7 @@ MonoBehaviour:
   attackCost: 10
   stamRegen: 30
   healthRegen: 0
+  team: 0
 --- !u!54 &1643756140
 Rigidbody:
   m_ObjectHideFlags: 0
